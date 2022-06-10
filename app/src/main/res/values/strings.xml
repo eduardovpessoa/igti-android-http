@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">modulo-iv</string>
+    <string name="title_activity_main">IGTI Android</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Lista de Alunos</string>
+    <string name="second_fragment_label">Cadastro de Alunos</string>
+    <string name="third_fragment_label">Alteração de Alunos</string>
+    <string name="next">Próximo</string>
+    <string name="save">Salvar</string>
+    <string name="edt_id">ID</string>
+    <string name="edt_nome">Nome</string>
+    <string name="edt_sobrenome">Sobrenome</string>
+    <string name="edt_nascimento">Data de Nascimento</string>
+    <string name="cadastrado_com_sucesso">Cadastrado com sucesso! %s</string>
+</resources>

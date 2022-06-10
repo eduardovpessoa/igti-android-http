@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ListarAlunosFragment">
+
+    <fragment
+        android:id="@+id/ListarAlunosFragment"
+        android:name="br.com.igti.modulo_iv.ui.alunos.ListarAlunosFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_listar_alunos">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/CadastrarAlunoFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_ThirdFragment"
+            app:destination="@id/AlterarAlunoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CadastrarAlunoFragment"
+        android:name="br.com.igti.modulo_iv.ui.alunos.CadastrarAlunoFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_cadastrar_alunos">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/ListarAlunosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AlterarAlunoFragment"
+        android:name="br.com.igti.modulo_iv.ui.alunos.AlterarAlunoFragment"
+        android:label="@string/third_fragment_label"
+        tools:layout="@layout/fragment_alterar_alunos">
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            app:destination="@id/ListarAlunosFragment" />
+    </fragment>
+</navigation>
