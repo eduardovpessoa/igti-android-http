@@ -20,12 +20,13 @@ import br.com.igti.modulo_iv.ui.alunos.adapter.AlunoListener
 import br.com.igti.modulo_iv.viewmodel.ListarAlunoViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListarAlunosFragment : Fragment() {
 
     private var _binding: FragmentListarAlunosBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ListarAlunoViewModel by viewModels()
+    private val viewModel: ListarAlunoViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,7 +105,7 @@ class ListarAlunosFragment : Fragment() {
                         "id" to it.id,
                         "nome" to it.nome,
                         "sobrenome" to it.sobrenome,
-                        "nascimento" to it.nascimento.toString()
+                        "nascimento" to it.nascimento?.toString()
                     )
                     findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment, bundle)
                 }

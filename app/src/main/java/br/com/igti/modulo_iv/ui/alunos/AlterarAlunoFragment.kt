@@ -13,12 +13,13 @@ import br.com.igti.modulo_iv.databinding.FragmentAlterarAlunosBinding
 import br.com.igti.modulo_iv.viewmodel.AlterarAlunoViewModel
 import java.time.LocalDate
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlterarAlunoFragment : Fragment() {
 
     private var _binding: FragmentAlterarAlunosBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: AlterarAlunoViewModel by viewModels()
+    private val viewModel: AlterarAlunoViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

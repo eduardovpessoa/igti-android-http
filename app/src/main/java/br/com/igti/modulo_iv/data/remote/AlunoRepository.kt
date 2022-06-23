@@ -7,22 +7,18 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Path
 
-class AlunoRepository(private val retrofitClient: RetrofitClient) : IAlunoRepository {
-    override fun listarAlunos(): Call<List<AlunoResponseDTO>> =
-        retrofitClient.getInstance().getAlunoApi().listarAlunos()
+class AlunoRepository(private val api : IAlunoRepository) {
+    fun listarAlunos(): Call<List<AlunoResponseDTO>> = api.listarAlunos()
 
-    override fun listarAlunoPorId(@Path(value = "id") id: String): Call<AlunoResponseDTO> =
-        retrofitClient.getInstance().getAlunoApi().listarAlunoPorId(id)
+    fun listarAlunoPorId(id: String): Call<AlunoResponseDTO> =
+        api.listarAlunoPorId(id)
 
-    override fun cadastrarAluno(aluno: AlunoRequestDTO): Call<MessageDTO> =
-        retrofitClient.getInstance().getAlunoApi().cadastrarAluno(aluno)
+    fun cadastrarAluno(aluno: AlunoRequestDTO): Call<MessageDTO> =
+        api.cadastrarAluno(aluno)
 
-    override fun alterarAluno(
-        @Path(value = "id") id: String,
-        @Body aluno: AlunoRequestDTO
-    ): Call<AlunoResponseDTO> =
-        retrofitClient.getInstance().getAlunoApi().alterarAluno(id, aluno)
+    fun alterarAluno(id: String, aluno: AlunoRequestDTO): Call<AlunoResponseDTO> =
+        api.alterarAluno(id, aluno)
 
-    override fun excluirAluno(@Path(value = "id") id: String): Call<MessageDTO> =
-        retrofitClient.getInstance().getAlunoApi().excluirAluno(id)
+    fun excluirAluno(id: String): Call<MessageDTO> =
+        api.excluirAluno(id)
 }

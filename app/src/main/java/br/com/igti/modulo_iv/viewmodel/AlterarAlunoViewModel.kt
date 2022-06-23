@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.igti.modulo_iv.data.remote.AlunoRepository
-import br.com.igti.modulo_iv.data.remote.IAlunoRepository
-import br.com.igti.modulo_iv.data.remote.RetrofitClient
 import br.com.igti.modulo_iv.data.remote.dto.AlunoRequestDTO
 import br.com.igti.modulo_iv.data.remote.dto.AlunoResponseDTO
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,10 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AlterarAlunoViewModel(
+    private val repository: AlunoRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
-
-    private val repository: IAlunoRepository = AlunoRepository(RetrofitClient())
 
     private val _alunoAlterado: MutableLiveData<AlunoResponseDTO> = MutableLiveData()
     val alunoAlterado: LiveData<AlunoResponseDTO> = _alunoAlterado

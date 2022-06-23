@@ -3,9 +3,7 @@ package br.com.igti.modulo_iv.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.igti.modulo_iv.data.remote.AlunoRepository
 import br.com.igti.modulo_iv.data.remote.IAlunoRepository
-import br.com.igti.modulo_iv.data.remote.RetrofitClient
 import br.com.igti.modulo_iv.data.remote.dto.AlunoRequestDTO
 import br.com.igti.modulo_iv.data.remote.dto.MessageDTO
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,10 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CadastrarAlunoViewModel(
+    private val repository: IAlunoRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
-
-    private val repository: IAlunoRepository = AlunoRepository(RetrofitClient())
 
     private val _successFlow = MutableStateFlow("")
     val successFlow: StateFlow<String> = _successFlow

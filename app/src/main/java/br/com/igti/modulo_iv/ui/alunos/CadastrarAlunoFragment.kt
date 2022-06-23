@@ -16,12 +16,13 @@ import java.time.LocalDate
 import java.util.Locale
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CadastrarAlunoFragment : Fragment() {
 
     private var _binding: FragmentCadastrarAlunosBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: CadastrarAlunoViewModel by viewModels()
+    private val viewModel: CadastrarAlunoViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

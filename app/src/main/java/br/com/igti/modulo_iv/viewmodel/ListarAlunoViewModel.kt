@@ -1,15 +1,15 @@
 package br.com.igti.modulo_iv.viewmodel
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.igti.modulo_iv.data.remote.AlunoRepository
-import br.com.igti.modulo_iv.data.remote.IAlunoRepository
-import br.com.igti.modulo_iv.data.remote.RetrofitClient
 import br.com.igti.modulo_iv.data.remote.dto.AlunoResponseDTO
 import br.com.igti.modulo_iv.data.remote.dto.MessageDTO
+import java.util.Base64
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +19,9 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class ListarAlunoViewModel(
+    private val repository: AlunoRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
-
-    private val repository: IAlunoRepository = AlunoRepository(RetrofitClient())
 
     private val _alunoDetalhes: MutableLiveData<AlunoResponseDTO> = MutableLiveData()
     val alunoDetalhes: LiveData<AlunoResponseDTO> = _alunoDetalhes
@@ -52,6 +51,7 @@ class ListarAlunoViewModel(
                     Log.e(ListarAlunoViewModel::class.java.name, t.toString())
                 }
             })
+            testDecodeToken()
         }
     }
 
@@ -95,5 +95,24 @@ class ListarAlunoViewModel(
 
     fun alterarStatusExclusao(valor: Boolean) {
         _alunoExcluido.value = valor
+    }
+
+    private fun decodeToken(jwt: String): String {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return "Requires SDK 26"
+        val parts = jwt.split(".")
+        return try {
+            val charset = charset("UTF-8")
+            val header = String(Base64.getUrlDecoder().decode(parts[0].toByteArray(charset)), charset)
+            val payload = String(Base64.getUrlDecoder().decode(parts[1].toByteArray(charset)), charset)
+            "$header"
+            "$payload"
+        } catch (e: Exception) {
+            "Error parsing JWT: $e"
+        }
+    }
+
+    fun testDecodeToken(){
+        val token = "coloque seu token aqui!"
+        Log.i("token", decodeToken(token))
     }
 }
